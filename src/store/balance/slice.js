@@ -7,11 +7,17 @@ const initialState = {
 export const balanceSlice = createSlice({
   name: "balance",
   initialState,
-  reducers: {},
+  reducers: {
+    // Add a key called `deposit`
+    deposit: (state, action) => {
+      // empty for now! :)
+      state.amount = state.amount + action.payload;
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
 // as we add cases to our reducer we will also export the corresponding actions
-export const {} = balanceSlice.actions;
+export const { deposit } = balanceSlice.actions;
 
 export default balanceSlice.reducer;
