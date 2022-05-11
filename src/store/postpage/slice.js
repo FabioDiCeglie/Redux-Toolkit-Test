@@ -18,10 +18,18 @@ const feedSlice = createSlice({
       state.comments = action.payload.comment;
       state.loading = false;
     },
+    createComment: (state, action) => {
+      state.comments = {
+        ...state.comments,
+        count: state.comments.count + 1,
+        rows: [...state.comments.rows, action.payload],
+      };
+    },
   },
 });
 
 // remember to export the action creators for the new reducer cases
-export const { startLoading, postsFullyFetched } = feedSlice.actions;
+export const { startLoading, postsFullyFetched, createComment } =
+  feedSlice.actions;
 
 export default feedSlice.reducer;
