@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Homepage from "./pages/Homepage";
 import { deposit, withdraw, reset } from "./store/balance/slice";
 import { selectBalance } from "./store/selectors";
 
@@ -39,6 +40,7 @@ function App() {
       >
         Deposit custom amount
       </button>
+      <Homepage />
     </div>
   );
 }
