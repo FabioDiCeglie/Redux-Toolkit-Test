@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deposit, withdraw, reset } from "./store/balance/slice";
-import { selectBalance } from "./store/balance/selectors";
+import { selectBalance } from "./store/selectors";
 
 function App() {
   const [customAmount, setCustomAmount] = useState(0);
