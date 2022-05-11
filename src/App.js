@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deposit } from "./store/balance/slice";
 import { selectBalance } from "./store/balance/selectors";
