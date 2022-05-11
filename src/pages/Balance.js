@@ -1,8 +1,9 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { deposit, withdraw, reset } from "./store/balance/slice";
-import { selectBalance } from "./store/selectors";
+import { deposit, withdraw, reset } from "../store/balance/slice";
+import { selectBalance } from "../store/selectors";
 
 export default () => {
   const [customAmount, setCustomAmount] = useState(0);

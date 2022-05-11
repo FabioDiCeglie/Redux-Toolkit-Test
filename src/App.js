@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import { Homepage, Balance } from "./pages";
+import Homepage from "./pages/Homepage";
+import Balance from "./pages/Balance";
 
 function App() {
   return (
