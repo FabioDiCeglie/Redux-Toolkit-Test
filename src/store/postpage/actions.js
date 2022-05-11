@@ -1,4 +1,5 @@
 import axios from "axios";
+import { postsFullyFetched } from "./slice";
 
 const API_URL = `https://codaisseur-coders-network.herokuapp.com`;
 
@@ -11,10 +12,10 @@ export function fetchPost(id) {
       axios.get(`${API_URL}/posts/${id}/comments`),
     ]);
 
-    console.log("post", postResponse.data);
-    console.log("comment", commentsResponse.data);
+    const post = postResponse.data;
+    const comment = commentsResponse.data;
 
     // dispatch postFullyFetched with the correct object parameter
-    dispatch(fetchPost(9));
+    dispatch(postsFullyFetched({ post, comment }));
   };
 }

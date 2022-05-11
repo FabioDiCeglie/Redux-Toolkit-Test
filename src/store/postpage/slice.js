@@ -14,8 +14,9 @@ const feedSlice = createSlice({
       state.loading = true;
     },
     postsFullyFetched: (state, action) => {
-      //   state.posts = [...state.posts, ...action.payload];
-      //   state.loading = false;
+      state.post = action.payload.post;
+      state.comments = action.payload.comment;
+      state.loading = false;
     },
   },
 });
