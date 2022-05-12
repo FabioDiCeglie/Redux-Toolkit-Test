@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { selectFeedPosts } from "../store/selectors";
 import { fetchPosts } from "../store/feed/actions";
+import { logout } from "../store/auth/slice";
 
 export default function Homepage() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function Homepage() {
 
   return (
     <div style={{ marginLeft: 20 }}>
+      <button onClick={() => dispatch(logout())}>Log out</button>
       <h2>Posts</h2>
       {posts.map((post) => {
         return (

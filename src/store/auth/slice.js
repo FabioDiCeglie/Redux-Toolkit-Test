@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   me: null,
-  accessToken: null,
+  accessToken: localStorage.getItem("token"),
   loading: false,
 };
 
@@ -13,13 +13,23 @@ const authSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
-    logInUser: (state, action) => {
+    userLoggedIn: (state, action) => {
+      localStorage.setItem("token", action.payload.jwt);
       state.accessToken = { ...action.payload };
+    },
+    userData: (state, action) => {
+      state.me = { ...action.payload };
+    },
+    logout: (state, action) => {
+      localStorage.removeItem("token");
+      state.me = null;
+      state.accessToken = null;
     },
   },
 });
 
 // remember to export the action creators for the new reducer cases
-export const { startLoading, logInUser } = authSlice.actions;
+export const { startLoading, userLoggedIn, userData, logout } =
+  authSlice.actions;
 
 export default authSlice.reducer;

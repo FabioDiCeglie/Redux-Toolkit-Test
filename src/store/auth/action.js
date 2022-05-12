@@ -1,5 +1,5 @@
 import axios from "axios";
-import { startLoading, logInUser } from "./slice";
+import { startLoading, userLoggedIn, userData } from "./slice";
 
 const API_URL = `https://codaisseur-coders-network.herokuapp.com`;
 
@@ -13,9 +13,32 @@ export function login(email, password) {
         password,
       });
 
-      const data = response.data;
+      const jwt = response.data;
 
-      dispatch(logInUser(data));
+      dispatch(userLoggedIn(jwt));
+      dispatch(bootstrapLoginState());
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+}
+
+export function bootstrapLoginState() {
+  return async function thunk(dispatch, getState) {
+    const jwt = getState().user.accessToken;
+
+    if (jwt === null) return;
+
+    try {
+      dispatch(startLoading());
+      const user = await axios.get(`${API_URL}/me`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+
+      console.log(user.data);
+      dispatch(userData(user.data));
     } catch (e) {
       console.log(e.message);
     }

@@ -4,7 +4,16 @@ import Balance from "./pages/Balance";
 import PostPage from "./pages/PostPage";
 import LoginPage from "./pages/Login";
 
+import { bootstrapLoginState } from "./store/auth/action";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(bootstrapLoginState());
+  }, [dispatch]);
   return (
     <div>
       <Routes>
