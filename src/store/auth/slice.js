@@ -13,10 +13,13 @@ const authSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
+    logInUser: (state, action) => {
+      state.accessToken = { ...action.payload };
+    },
   },
 });
 
 // remember to export the action creators for the new reducer cases
-export const { startLoading } = authSlice.actions;
+export const { startLoading, logInUser } = authSlice.actions;
 
 export default authSlice.reducer;
