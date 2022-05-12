@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-import { selectFeedPosts } from "../store/selectors";
+import { selectFeedPosts, selectUser } from "../store/selectors";
 import { fetchPosts } from "../store/feed/actions";
 import { logout } from "../store/auth/slice";
 
 export default function Homepage() {
   const dispatch = useDispatch();
   const posts = useSelector(selectFeedPosts);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(fetchPosts);
@@ -17,7 +18,11 @@ export default function Homepage() {
 
   return (
     <div style={{ marginLeft: 20 }}>
-      <button onClick={() => dispatch(logout())}>Log out</button>
+      {user.accessToken ? (
+        <button onClick={() => dispatch(logout())}>Log out</button>
+      ) : (
+        ""
+      )}
       <h2>Posts</h2>
       {posts.map((post) => {
         return (

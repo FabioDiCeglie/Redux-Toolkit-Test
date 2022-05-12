@@ -37,7 +37,6 @@ export function bootstrapLoginState() {
         },
       });
 
-      console.log(user.data);
       dispatch(userData(user.data));
     } catch (e) {
       console.log(e.message);
