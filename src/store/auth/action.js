@@ -13,7 +13,7 @@ export function login(email, password) {
         password,
       });
 
-      const jwt = response.data;
+      const jwt = response.data.jwt;
 
       dispatch(userLoggedIn(jwt));
       dispatch(bootstrapLoginState());

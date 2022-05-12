@@ -15,7 +15,7 @@ const authSlice = createSlice({
     },
     userLoggedIn: (state, action) => {
       localStorage.setItem("token", action.payload.jwt);
-      state.accessToken = { ...action.payload };
+      state.accessToken = action.payload;
     },
     userData: (state, action) => {
       state.me = { ...action.payload };
