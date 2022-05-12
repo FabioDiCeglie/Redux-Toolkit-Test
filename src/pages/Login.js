@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/auth/action";
+import { Link } from "react-router-dom";
+
+import { selectUser } from "../store/selectors";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -11,6 +14,16 @@ export default function LoginPage() {
     event.preventDefault();
     dispatch(login(email, password));
   }
+
+  const user = useSelector(selectUser);
+
+  if (user.accessToken)
+    return (
+      <div>
+        <p>You are logged in</p>
+        <Link to="/">Go back to homepage</Link>
+      </div>
+    );
 
   return (
     <div>
